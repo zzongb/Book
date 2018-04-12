@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzb.mapper.BookMapper">
+	
+	<select id="selectBook" parameterType="com.zzb.vo.BookVo" resultType="Book">
+		select * from tbl_book b  
+		<where>
+			1=1
+			<if test=" book != null and book.bname != null and book.bname !=''">
+				and b.bname like '%${book.bname}%'
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertBook" parameterType="Book">
+		insert into tbl_book(id,isbn,bname,author,price,publishhouse,publishDate,info,num,balante,type)
+		values(tbl_book_id.nextval,#{isbn,jdbcType=VARCHAR},#{bname,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR},#{price},#{publishhouse,jdbcType=VARCHAR},#{publishDate,jdbcType=DATE},#{info,jdbcType=VARCHAR},#{num,jdbcType=NUMERIC},#{balante,jdbcType=NUMERIC},#{type,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="deleteBookById" parameterType="int">
+		delete tbl_book where id=#{id} 
+	</delete>
+	
+	<update id="updateBook" parameterType="Book">
+		update tbl_book
+		<set>
+			<if test="isbn != null and isbn != ''">
+				isbn=#{isbn},
+			</if>
+			<if test="bname != null and bname != ''">
+				bname=#{bname},
+			</if>
+			<if test="author != null and author != ''">
+				author=#{author},
+			</if>
+			<if test="price != null and price != ''">
+				price=#{price},
+			</if>
+			<if test="publishhouse != null and publishhouse != ''">
+				publishhouse=#{publishhouse},
+			</if>
+			<if test="publishDate != null and publishDate != ''">
+			 	publishDate=#{publishDate},
+			</if>
+			<if test="info != null and info != ''">
+				info=#{info},
+			</if>
+			<if test="num != null and num != ''">
+				num=#{num},
+			</if>
+			<if test="balante != null and balante != ''">
+				balante=#{balante},
+			</if>
+			<if test="type != null and type != ''">
+				type=#{type}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<select id="updateBookById" parameterType="int" resultType="Book">
+		select * from tbl_book where id=#{id}
+	</select>
+	
+	
+	<select id="selectByArray" resultType="Book">
+		<foreach collection="bid" item="bid" separator="union">
+			select * from tbl_book where id=#{bid}
+		</foreach>
+	</select>
+</mapper>

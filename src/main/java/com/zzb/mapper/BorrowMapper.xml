@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzb.mapper.BorrowMapper">
+	
+	<resultMap type="Borrow" id="borrowMap">
+		<id column="id" property="id"></id>
+		<result column="borrowDate" property="borrowDate"/>
+		<result column="returnBook" property="returnBook"/>
+		<result column="sid" property="sid"/>
+		<result column="bid" property="bid"/>
+		
+		<collection property="books" column="bid" foreignColumn="bid" ofType="Book"
+			select="com.zzb.BookMapper.updateBookById">
+		</collection>
+	</resultMap>
+	
+	<insert id="insertBorrowBook" parameterType="Borrow">
+		insert into tbl_borrow 
+		values(tbl_borrow_id.nextval,#{borrowDate,jdbcType=DATE},#{returnBook,jdbcType=DATE},#{sid},#{bid})
+	</insert>
+	
+	
+	<select id="selectBySid" parameterType="int" resultType="Borrow">
+		select id,borrowDate,returnBook,sid,bid from tbl_borrow where sid=#{sid}
+	</select>
+	
+	<delete id="deleteBorrowByBid" parameterType="int">
+		delete tbl_borrow where bid=#{bid}
+	</delete>
+	
+	<select id="selectById" parameterType="int" resultType="Borrow">
+		select * from tbl_borrow where bid=#{bid}
+	</select>
+		
+</mapper>
