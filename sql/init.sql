@@ -1,4 +1,4 @@
---创建管理员表
+﻿--创建管理员表
 create table tbl_user(
 	id number,
 	username varchar2(20),
@@ -44,7 +44,6 @@ create table tbl_book(
 
 create sequence tbl_book_id;
 
-
 --创建借书表
 create table borrow(
  	id number,
@@ -59,7 +58,6 @@ create table borrow(
  	constraint tbl_borrow_bid_fk foreign key(bid)
  	references tbl_book(id)
 )
-
 create sequence tbl_borrow_id;
-
+--------------------------------------------------------------------------------
 
