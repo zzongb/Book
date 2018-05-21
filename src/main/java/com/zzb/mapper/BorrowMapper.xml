@@ -21,7 +21,14 @@
 	
 	
 	<select id="selectBySid" parameterType="int" resultType="Borrow">
-		select id,borrowDate,returnBook,sid,bid from tbl_borrow where sid=#{sid}
+		select id,borrowDate,returnBook,sid,bid from tbl_borrow 
+		where sid=#{sid}
+		<!-- <if test="sid != null and sid != ' '">
+			sid=#{sid}
+		</if> -->
+		<!-- <if test="sid == null and sid == ''">
+			1 = 0
+		</if> -->
 	</select>
 	
 	<delete id="deleteBorrowByBid" parameterType="int">

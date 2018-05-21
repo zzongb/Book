@@ -14,7 +14,7 @@ public class Borrow {
 	
 	private String  returnBook;//还书日期
 	
-	private Integer sid;//是谁借的书
+	private int sid;//是谁借的书
 	
 	private Integer bid;//借的是哪本图书
 	
@@ -47,7 +47,7 @@ public class Borrow {
 		return sid;
 	}
 
-	public void setSid(Integer sid) {
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 
@@ -61,7 +61,6 @@ public class Borrow {
 
 	public Borrow() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Borrow(Integer id, String borrowDate, String returnBook, Integer sid, Integer bid) {

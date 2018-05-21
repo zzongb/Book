@@ -50,7 +50,10 @@ public class BorrowBookImpl implements BorrowBookService{
 			list1.add(borrow.getBid());
 		}
 		
-		if(list1 != null){
+		if(list1 != null || list1.size() >= 1){
+			System.out.println(list1);
+			System.out.println(list1.size());
+			//可能图书为空
 			 list2 = bookMapper.selectByArray(list1);
 		}
 		
@@ -66,9 +69,7 @@ public class BorrowBookImpl implements BorrowBookService{
 
 	@Override
 	public List<Borrow> selectByBid(Integer bid) {
-		
 		List<Borrow> list = borrowMapper.selectById(bid);
-		
 		return list;
 	}
 

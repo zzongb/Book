@@ -56,7 +56,6 @@ public class BorrowBookController {
 		borrow.setBid(id);
 		borrow.setBorrowDate(DateUtil.formatDate(new Date(),"yyyy-MM-dd"));
 		borrow.setSid(student.getId());
-		//时间上相加，报出异常第二个日期有问题
 		borrow.setReturnBook(DateUtil.add(new Date()));
 		borrowBookService.insertBorrowBook(borrow);
 		
@@ -68,11 +67,15 @@ public class BorrowBookController {
 	public String returnBook(Model model ,HttpSession session) throws Exception {
 		
 		Student student = (Student) session.getAttribute("student");
-		System.out.println(student);
-		BorrowVo borrowVo = borrowBookService.selectByBorrowVo(student.getId());
-		model.addAttribute("borrowVo",borrowVo);
+		if(student.getId() != null && student != null ){
+			System.out.println(student.getId());
+			System.out.println(1);
+			BorrowVo borrowVo = borrowBookService.selectByBorrowVo(student.getId());
+			System.out.println(2);
+			model.addAttribute("borrowVo",borrowVo);
+			System.out.println(3);
+		} 
 		return "list";
-		
 	}
 	
 	@RequestMapping("/borrowBookXingqing")
@@ -88,10 +91,13 @@ public class BorrowBookController {
 	@RequestMapping("/returnBookPage")
 	public String deleteBorrow(Integer id) throws Exception {
 		borrowBookService.deleteBorrowById(id);
+		System.out.println(id);
 		//根据bid查找Borrow
 		List<Borrow> list = borrowBookService.selectByBid(id);
+		System.out.println(id);
 		
 		Book book = bookService.selectBookId(id);
+		System.out.println(book);
 		Integer balante = book.getBalante();
 		book.setBalante(balante+list.size());
 		System.out.println(book.getBalante());

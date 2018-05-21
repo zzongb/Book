@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.zzb.entity.Book;
 import com.zzb.vo.BookVo;
+import com.zzb.vo.BorrowVo;
 
 
 public class BookServiceTest {
@@ -44,6 +45,10 @@ public class BookServiceTest {
 		book.setPublishhouse("机械出版社");
 		book.setType("文学类");
 		bookService.insertBook(book);
+	}
+	
+	@Test
+	public void testSelectByBorrowVo(){
 	}
 
 }

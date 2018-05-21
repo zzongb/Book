@@ -61,10 +61,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/deletepage")
+	@ResponseBody
 	public String deletepage(Model model,Integer id) throws Exception {
-		
 		userService.deleteById(id);
-		return "redirect:admin";
+		return "OK";
 	}
 	
 	

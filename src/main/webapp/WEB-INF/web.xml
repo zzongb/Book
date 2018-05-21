@@ -18,7 +18,7 @@
     
      <!-- spring MVC ConfigLocation -->
   	<servlet>
-	  	<servlet-name>Book</servlet-name>
+	  	<servlet-name>echarts</servlet-name>
 	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	  	<!-- contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器） 
 	  	-->
@@ -30,7 +30,7 @@
   		<load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-	  	<servlet-name>Book</servlet-name>
+	  	<servlet-name>echarts</servlet-name>
 	  	<url-pattern>/</url-pattern>
     </servlet-mapping>
     

@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>用户界面</title>
+		<title>借书界面</title>
 		<link rel="stylesheet" href="${path }/dist/css/bootstrap.min.css" />
 		<script type="text/javascript" src="${path }/js/jquery-3.2.1.min.js" ></script>
 		<script type="text/javascript" src="${path }/dist/js/bootstrap.min.js" ></script>
@@ -52,7 +52,7 @@
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target="#example-navbar-collapse">
 							<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span>
+								class="icon-bar"></span><span class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="${path}/returnBook">归还图书</a>
 					</div>
@@ -60,8 +60,6 @@
 				</div>
 			</nav>
 		</div>
-		
-		
 		<!--查询开始-->
 		<div class="container">
 			<div>
@@ -113,7 +111,7 @@
 								<td><fmt:formatDate value="${book.publishDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 								<td>${book.info }</td>
 								<td>${book.num }</td>
-								<td>${book.balante }</td>
+								<td id="num">${book.balante }</td>
 								<td>${book.type}</td>
 								<td>
 									<a href="${path }/borrowPage?id=${book.id}" class="btn btn-warning">借阅</a>
@@ -139,8 +137,8 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		
-		//删除
+	
+		/* //删除
 		function delFilms(){
 			//询问框
 			layer.confirm('确认删除吗？', {
@@ -170,6 +168,6 @@
 			}, function(){
 			  layer.closeAll();
 			});
-		  }
+		  } */
 	</script>
 </html>

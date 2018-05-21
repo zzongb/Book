@@ -108,7 +108,7 @@
 								<td>${student.major }</td>
 								<td>
 									<a href="${path }/updatepage?id=${student.id}" class="btn btn-warning">修改</a>
-									<a href="${path }/deletepage?id=${student.id}" class="btn btn-warning">删除</a>
+									<a href="javascript:delStudentBeffer(${student.id });" class="btn btn-warning">删除</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -133,28 +133,22 @@
 	<script type="text/javascript">
 		
 		//删除
-		function delFilms(){
+		function delStudentBeffer(id){
 			//询问框
 			layer.confirm('确认删除吗？', {
 			  btn: ['必须的','算了吧'] //按钮
 			}, function(){
-				var ids = "";
-				for(var i=0;i<$(".cks:checked").length;i++){
-					ids += $(".cks:checked:eq(" + i + ")").val() + ",";//1,2
-				}
-				ids = ids.substr(0,ids.length-1);
-				
 				$.ajax({
-					url:"${path }/back/filmDel",
-					data:{"ids":ids},
+					url:"${path }/deletepage",
+					data:{"id":id},
 					type:"post",
 					success:function(msg){
-						//判断是否登陆成功
-						if(msg == "success"){
-							layer.msg("删除成功");
-							window.location.href = "${path }/back/filmList";
+						if(msg == "OK"){
+							layer.alert("删除成功");
+							window.location.href = "${path }/admin";
 							return;
 						}else{
+							layer.alert("删除失败");
 							return false;
 						}
 					}

@@ -86,7 +86,12 @@
 		<div class="container">
 			<div class="table-responsive">
 				<table class="table table-hover">
-					<caption>全部用户信息</caption>
+				<c:choose>
+					<c:when test="${borrowVo.borrows == null || borrowVo.borrows == ''}">
+						<p style='font-size:10px;color:red'>数据为空</p>
+					</c:when>
+					<c:otherwise>
+						<caption>全部用户信息</caption>
 					<thead>
 						<tr class="active">
 							<th>借书用户id</th>
@@ -108,6 +113,12 @@
 								</tr>
 						</c:forEach>
 					</tbody>
+					</c:otherwise>
+				</c:choose>
+				
+					
+				
+					
 				</table>
 			</div>
 		</div>
